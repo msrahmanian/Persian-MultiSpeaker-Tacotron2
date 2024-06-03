@@ -5,7 +5,14 @@ Multispeaker Text-To-Speech Synthesis](https://arxiv.org/pdf/1806.04558.pdf) (SV
 <img src="https://github.com/majidAdibian77/persian-SV2TTS/blob/master/results/model.JPG" width="800"> 
 
 ## Quickstart
-Data structures:
+**1. Character-set definition:**
+
+Open the `synthesizer/persian_utils/symbols.py` file and update the `_characters` variable to include all the characters that exist in your text files. Most of Persian characters and symbols are already included in this variable as follows:
+```
+_characters = "ءابتثجحخدذرزسشصضطظعغفقلمنهويِپچژکگیآۀأؤإئًَُّ!(),-.:;?  ̠،…؛؟‌٪#ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_–@+/\u200c"
+```
+
+**2. Data structures:**
 ```
 dataset/persian_date/
     train_data/
@@ -18,16 +25,18 @@ dataset/persian_date/
         ...
 ```
 
-Preprocessing:
+**3. Preprocessing:**
 ```
 python synthesizer_preprocess_audio.py dataset --datasets_name persian_data --subfolders train_data --no_alignments
 python synthesizer_preprocess_embeds.py dataset/SV2TTS/synthesizer
 ```
 
-Train synthesizer:
+**4. Train synthesizer:**
 ```
 python synthesizer_train.py my_run dataset/SV2TTS/synthesizer
 ```
+
+**5. Inference:**
 
 For synthesizing wav file you must put all final models in `saved_models/final_models` directory.
 If you do not train speaker encoder and vocoder models you can use pretrained models in `saved_models/default`.
